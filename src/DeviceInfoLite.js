@@ -30,6 +30,10 @@ class DeviceInfoLite {
 		return await RNDeviceInfoLite.getSystemAvailableFeatures();
 	}
 
+	async getCurrentLocale(): Promise<string> {
+		return await RNDeviceInfoLite.getCurrentLocale();
+	}
+
 	getVersion(): string {
 		if (!this.constants) return UNKNOWN;
 		return this.constants.appVersion;

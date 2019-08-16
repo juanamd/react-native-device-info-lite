@@ -111,6 +111,17 @@ public class RNDeviceInfoLiteModule extends ReactContextBaseJavaModule {
 	}
 
 	@ReactMethod
+	public void getCurrentLocale(final Promise promise) {
+		try {
+			String locale = this.getCurrentLanguage();
+			promise.resolve(locale);
+		} catch (Exception e) {
+			promise.reject(e);
+			Log.e(TAG, "Error on getCurrentLocale()", e);
+		}
+	}
+
+	@ReactMethod
 	public void getValues(Promise promise) {
 		Log.d(TAG, "Getting system values...");
 		try {
