@@ -35,6 +35,10 @@ class DeviceInfoLite {
 		return await RNDeviceInfoLite.getCurrentLocale();
 	}
 
+	static async isActiveNetworkMetered(): Promise<boolean> {
+		return await RNDeviceInfoLite.isActiveNetworkMetered();
+	}
+
 	static getVersion(): string {
 		if (!constants) return UNKNOWN;
 		return constants.appVersion;

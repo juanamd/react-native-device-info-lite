@@ -6,6 +6,7 @@ declare module "react-native-device-info-lite" {
 		static async hasSystemFeature(feature: string): Promise<boolean>;
 		static async getSystemAvailableFeatures(): Promise<Array<string>>;
 		static async getCurrentLocale(): Promise<string>;
+		static async isActiveNetworkMetered(): Promise<boolean>;
 		static getVersion(): string;
 		static getBuildNumber(): string;
 		static getFirstInstallTime(): number;

@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.FeatureInfo;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
@@ -118,6 +119,18 @@ public class RNDeviceInfoLiteModule extends ReactContextBaseJavaModule {
 		} catch (Exception e) {
 			promise.reject(e);
 			Log.e(TAG, "Error on getCurrentLocale()", e);
+		}
+	}
+
+	@ReactMethod
+	public void isActiveNetworkMetered(final Promise promise) {
+		try {
+			ConnectivityManager cm = (ConnectivityManager) getReactApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			boolean isMetered = cm.isActiveNetworkMetered();
+			promise.resolve(isMetered);
+		} catch (Exception e) {
+			promise.reject(e);
+			Log.e(TAG, "Error on isActiveNetworkMetered()", e);
 		}
 	}
 
