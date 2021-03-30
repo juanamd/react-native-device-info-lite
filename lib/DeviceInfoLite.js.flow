@@ -9,6 +9,10 @@ let isInitialized: boolean = false;
 let constants: any = undefined;
 
 class DeviceInfoLite {
+	static isInitialized(): boolean {
+		return isInitialized;
+	}
+
 	static async initialize() {
 		if (isInitialized) return;
 		constants = await RNDeviceInfoLite.getValues();

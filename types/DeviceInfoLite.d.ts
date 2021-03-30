@@ -1,5 +1,6 @@
 declare module "react-native-device-info-lite" {
 	export default class {
+		static isInitialized(): boolean;
 		static async initialize(): Promise<void>;
 		static async isAutoDateAndTime(): Promise<boolean>;
 		static async isAutoTimeZone(): Promise<boolean>;
