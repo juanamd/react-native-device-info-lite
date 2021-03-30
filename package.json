@@ -1,6 +1,6 @@
 {
   "name": "react-native-device-info-lite",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Get basic device information using react-native",
   "main": "lib/DeviceInfoLite.js",
   "types": "types/DeviceInfoLite.d.ts",
