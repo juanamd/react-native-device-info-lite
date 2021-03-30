@@ -5,191 +5,230 @@ import { NativeModules } from "react-native";
 const RNDeviceInfoLite = NativeModules.RNDeviceInfoLite;
 const UNKNOWN = "unknown";
 
-class DeviceInfoLite {
-	isInitialized: boolean;
-	constants: any;
+let isInitialized: boolean = false;
+let constants: any = undefined;
 
-	async initialize() {
-		this.constants = await RNDeviceInfoLite.getValues();
-		this.isInitialized = true;
+class DeviceInfoLite {
+	static async initialize() {
+		if (isInitialized) return;
+		constants = await RNDeviceInfoLite.getValues();
+		isInitialized = true;
 	}
 
-	async isAutoDateAndTime(): Promise<boolean> {
+	static async isAutoDateAndTime(): Promise<boolean> {
 		return await RNDeviceInfoLite.isAutoDateAndTime();
 	}
 
-	async isAutoTimeZone(): Promise<boolean> {
+	static async isAutoTimeZone(): Promise<boolean> {
 		return await RNDeviceInfoLite.isAutoTimeZone();
 	}
 
-	async hasSystemFeature(feature: string): Promise<boolean> {
+	static async hasSystemFeature(feature: string): Promise<boolean> {
 		return await RNDeviceInfoLite.hasSystemFeature(feature);
 	}
 
-	async getSystemAvailableFeatures(): Promise<Array<string>> {
+	static async getSystemAvailableFeatures(): Promise<Array<string>> {
 		return await RNDeviceInfoLite.getSystemAvailableFeatures();
 	}
 
-	async getCurrentLocale(): Promise<string> {
+	static async getCurrentLocale(): Promise<string> {
 		return await RNDeviceInfoLite.getCurrentLocale();
 	}
 
-	getVersion(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.appVersion;
+	static getVersion(): string {
+		if (!constants) return UNKNOWN;
+		return constants.appVersion;
 	}
-	getBuildNumber(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.buildNumber;
+
+	static getBuildNumber(): string {
+		if (!constants) return UNKNOWN;
+		return constants.buildNumber;
 	}
-	getFirstInstallTime(): number {
-		if (!this.constants) return 0;
-		return this.constants.firstInstallTime;
+
+	static getFirstInstallTime(): number {
+		if (!constants) return 0;
+		return constants.firstInstallTime;
 	}
-	getLastUpdateTime(): number {
-		if (!this.constants) return 0;
-		return this.constants.lastUpdateTime;
+
+	static getLastUpdateTime(): number {
+		if (!constants) return 0;
+		return constants.lastUpdateTime;
 	}
-	getApplicationName(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.applicationName;
+
+	static getApplicationName(): string {
+		if (!constants) return UNKNOWN;
+		return constants.applicationName;
 	}
-	getBundleId(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.bundleId;
+
+	static getBundleId(): string {
+		if (!constants) return UNKNOWN;
+		return constants.bundleId;
 	}
-	getSystemVersion(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.systemVersion;
+
+	static getSystemVersion(): string {
+		if (!constants) return UNKNOWN;
+		return constants.systemVersion;
 	}
-	getModel(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.model;
+
+	static getModel(): string {
+		if (!constants) return UNKNOWN;
+		return constants.model;
 	}
-	getBrand(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.brand;
+
+	static getBrand(): string {
+		if (!constants) return UNKNOWN;
+		return constants.brand;
 	}
-	getBuildId(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.buildId;
+
+	static getBuildId(): string {
+		if (!constants) return UNKNOWN;
+		return constants.buildId;
 	}
-	getDeviceId(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.deviceId;
+
+	static getDeviceId(): string {
+		if (!constants) return UNKNOWN;
+		return constants.deviceId;
 	}
-	getAPILevel(): number {
-		if (!this.constants) return 0;
-		return this.constants.apiLevel;
+
+	static getAPILevel(): number {
+		if (!constants) return 0;
+		return constants.apiLevel;
 	}
-	getBootloader(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.bootloader;
+
+	static getBootloader(): string {
+		if (!constants) return UNKNOWN;
+		return constants.bootloader;
 	}
-	getDevice(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.device;
+
+	static getDevice(): string {
+		if (!constants) return UNKNOWN;
+		return constants.device;
 	}
-	getDisplay(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.display;
+
+	static getDisplay(): string {
+		if (!constants) return UNKNOWN;
+		return constants.display;
 	}
-	getFingerprint(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.fingerprint;
+
+	static getFingerprint(): string {
+		if (!constants) return UNKNOWN;
+		return constants.fingerprint;
 	}
-	getHardware(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.hardware;
+
+	static getHardware(): string {
+		if (!constants) return UNKNOWN;
+		return constants.hardware;
 	}
-	getHost(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.host;
+
+	static getHost(): string {
+		if (!constants) return UNKNOWN;
+		return constants.host;
 	}
-	getProduct(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.product;
+
+	static getProduct(): string {
+		if (!constants) return UNKNOWN;
+		return constants.product;
 	}
-	getTags(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.tags;
+
+	static getTags(): string {
+		if (!constants) return UNKNOWN;
+		return constants.tags;
 	}
-	getType(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.type;
+
+	static getType(): string {
+		if (!constants) return UNKNOWN;
+		return constants.type;
 	}
-	getBaseOS(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.baseOS;
+
+	static getBaseOS(): string {
+		if (!constants) return UNKNOWN;
+		return constants.baseOS;
 	}
-	getPreviewSdkInt(): number {
-		if (!this.constants) return 0;
-		return this.constants.previewSdkInt;
+
+	static getPreviewSdkInt(): number {
+		if (!constants) return 0;
+		return constants.previewSdkInt;
 	}
-	getSecurityPatch(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.securityPatch;
+
+	static getSecurityPatch(): string {
+		if (!constants) return UNKNOWN;
+		return constants.securityPatch;
 	}
-	getCodename(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.codename;
+
+	static getCodename(): string {
+		if (!constants) return UNKNOWN;
+		return constants.codename;
 	}
-	getIncremental(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.incremental;
+
+	static getIncremental(): string {
+		if (!constants) return UNKNOWN;
+		return constants.incremental;
 	}
-	getDeviceLocale(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.deviceLocale;
+
+	static getDeviceLocale(): string {
+		if (!constants) return UNKNOWN;
+		return constants.deviceLocale;
 	}
-	getPreferredLocales(): Array<string> {
-		if (!this.constants) return [];
-		return this.constants.preferredLocales;
+
+	static getPreferredLocales(): Array<string> {
+		if (!constants) return [];
+		return constants.preferredLocales;
 	}
-	getDeviceCountry(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.deviceCountry;
+
+	static getDeviceCountry(): string {
+		if (!constants) return UNKNOWN;
+		return constants.deviceCountry;
 	}
-	getManufacturer(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.systemManufacturer;
+
+	static getManufacturer(): string {
+		if (!constants) return UNKNOWN;
+		return constants.systemManufacturer;
 	}
-	getTimezone(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.timezone;
+
+	static getTimezone(): string {
+		if (!constants) return UNKNOWN;
+		return constants.timezone;
 	}
-	getFontScale(): number {
-		if (!this.constants) return 0;
-		return this.constants.fontScale;
+
+	static getFontScale(): number {
+		if (!constants) return 0;
+		return constants.fontScale;
 	}
-	getIs24Hour(): boolean {
-		if (!this.constants) return false;
-		return this.constants.is24Hour;
+
+	static getIs24Hour(): boolean {
+		if (!constants) return false;
+		return constants.is24Hour;
 	}
-	getTotalDiskCapacity(): number {
-		if (!this.constants) return 0;
-		return this.constants.totalDiskCapacity;
+
+	static getTotalDiskCapacity(): number {
+		if (!constants) return 0;
+		return constants.totalDiskCapacity;
 	}
-	getFreeDiskStorage(): number {
-		if (!this.constants) return 0;
-		return this.constants.freeDiskStorage;
+
+	static getFreeDiskStorage(): number {
+		if (!constants) return 0;
+		return constants.freeDiskStorage;
 	}
-	getDeviceType(): string {
-		if (!this.constants) return UNKNOWN;
-		return this.constants.deviceType;
+
+	static getDeviceType(): string {
+		if (!constants) return UNKNOWN;
+		return constants.deviceType;
 	}
-	getSupportedABIs(): Array<string> {
-		if (!this.constants) return [];
+
+	static getSupportedABIs(): Array<string> {
+		if (!constants) return [];
 		return RNDeviceInfoLite.supportedABIs;
 	}
-	getSupported32BitABIs(): Array<string> {
-		if (!this.constants) return [];
+
+	static getSupported32BitABIs(): Array<string> {
+		if (!constants) return [];
 		return RNDeviceInfoLite.supported32BitABIs;
 	}
-	getSupported64BitABIs(): Array<string> {
-		if (!this.constants) return [];
+
+	static getSupported64BitABIs(): Array<string> {
+		if (!constants) return [];
 		return RNDeviceInfoLite.supported64BitABIs;
 	}
 }
 
-export default new DeviceInfoLite();
+export default DeviceInfoLite;
