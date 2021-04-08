@@ -1,13 +1,13 @@
 declare module "react-native-device-info-lite" {
 	export default class {
 		static isInitialized(): boolean;
-		static async initialize(): Promise<void>;
-		static async isAutoDateAndTime(): Promise<boolean>;
-		static async isAutoTimeZone(): Promise<boolean>;
-		static async hasSystemFeature(feature: string): Promise<boolean>;
-		static async getSystemAvailableFeatures(): Promise<Array<string>>;
-		static async getCurrentLocale(): Promise<string>;
-		static async isActiveNetworkMetered(): Promise<boolean>;
+		static initialize(): Promise<void>;
+		static isAutoDateAndTime(): Promise<boolean>;
+		static isAutoTimeZone(): Promise<boolean>;
+		static hasSystemFeature(feature: string): Promise<boolean>;
+		static getSystemAvailableFeatures(): Promise<Array<string>>;
+		static getCurrentLocale(): Promise<string>;
+		static isActiveNetworkMetered(): Promise<boolean>;
 		static getVersion(): string;
 		static getBuildNumber(): string;
 		static getFirstInstallTime(): number;
